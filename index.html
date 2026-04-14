@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ixra | Space</title>
+    <title>Ixra</title>
     <style>
         @keyframes gradient-bg {
             0% { background-position: 0% 50%; }
@@ -78,11 +78,41 @@
             transition: all 0.3s ease;
             position: relative;
             z-index: 1;
+            cursor: pointer;
+            border: none;
+            width: 100%;
+            font-size: 16px;
         }
 
-        .btn:hover {
-            background-color: rgba(30, 58, 138, 0.3);
-            transform: scale(1.02);
+        .sub-buttons {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-out;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            padding: 0 10px;
+        }
+
+        .sub-buttons.open {
+            max-height: 200px;
+            padding: 10px;
+        }
+
+        .sub-btn {
+            background-color: rgba(88, 166, 255, 0.1);
+            border: 1px solid rgba(88, 166, 255, 0.3);
+            border-radius: 10px;
+            padding: 12px;
+            text-align: center;
+            text-decoration: none;
+            color: #c9d1d9;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .sub-btn:hover {
+            background-color: rgba(88, 166, 255, 0.2);
             color: #58a6ff;
         }
     </style>
@@ -95,18 +125,27 @@
 
     <div class="links-container">
         <div class="btn-wrapper">
-            <a href="#" class="btn">Link 1</a>
+            <div class="btn" onclick="toggleLinks()">Modlarım</div>
+            <div id="subLinks" class="sub-buttons">
+                <a href="MODRINTH_LINKI_BURAYA" class="sub-btn" target="_blank">Modrinth</a>
+                <a href="CURSEFORGE_LINKI_BURAYA" class="sub-btn" target="_blank">CurseForge</a>
+            </div>
+        </div>
+        
+        <div class="btn-wrapper">
+            <a href="#" class="btn">Discord</a>
         </div>
         <div class="btn-wrapper">
-            <a href="#" class="btn">Link 2</a>
-        </div>
-        <div class="btn-wrapper">
-            <a href="#" class="btn">Link 3</a>
-        </div>
-        <div class="btn-wrapper">
-            <a href="#" class="btn">Link 4</a>
+            <a href="#" class="btn">YouTube</a>
         </div>
     </div>
+
+    <script>
+        function toggleLinks() {
+            const subLinks = document.getElementById('subLinks');
+            subLinks.classList.toggle('open');
+        }
+    </script>
 
 </body>
 </html>
