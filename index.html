@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ixra</title>
+    <title>Ixra | Space</title>
     <style>
         @keyframes gradient-bg {
             0% { background-position: 0% 50%; }
@@ -90,30 +90,56 @@
             transition: max-height 0.5s ease-out;
             display: flex;
             flex-direction: column;
-            gap: 5px;
+            gap: 8px;
             padding: 0 10px;
         }
 
         .sub-buttons.open {
-            max-height: 200px;
+            max-height: 500px;
             padding: 10px;
         }
 
-        .sub-btn {
-            background-color: rgba(88, 166, 255, 0.1);
-            border: 1px solid rgba(88, 166, 255, 0.3);
-            border-radius: 10px;
-            padding: 12px;
+        .platform-btn {
+            background-color: rgba(88, 166, 255, 0.15);
+            border: 1px solid rgba(88, 166, 255, 0.4);
+            border-radius: 12px;
+            padding: 14px;
+            color: #58a6ff;
+            font-weight: bold;
+            cursor: pointer;
             text-align: center;
-            text-decoration: none;
-            color: #c9d1d9;
-            font-size: 14px;
-            transition: all 0.3s ease;
         }
 
-        .sub-btn:hover {
-            background-color: rgba(88, 166, 255, 0.2);
-            color: #58a6ff;
+        .mod-list {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            margin-top: 5px;
+            padding-left: 15px;
+            border-left: 2px solid rgba(88, 166, 255, 0.2);
+        }
+
+        .mod-list.active {
+            max-height: 300px;
+            margin-bottom: 10px;
+        }
+
+        .mod-item {
+            background-color: rgba(255, 255, 255, 0.05);
+            padding: 10px;
+            border-radius: 8px;
+            color: #c9d1d9;
+            text-decoration: none;
+            font-size: 14px;
+            transition: 0.2s;
+        }
+
+        .mod-item:hover {
+            background-color: rgba(88, 166, 255, 0.1);
+            color: #ffffff;
         }
     </style>
 </head>
@@ -124,26 +150,39 @@
     <img src="https://github.com/IxraPlayer.png" alt="Ixra" class="profile-pic">
 
     <div class="links-container">
+        
         <div class="btn-wrapper">
-            <div class="btn" onclick="toggleLinks()">Modlarım</div>
-            <div id="subLinks" class="sub-buttons">
-                <a href="MODRINTH_LINKI_BURAYA" class="sub-btn" target="_blank">Modrinth</a>
-                <a href="CURSEFORGE_LINKI_BURAYA" class="sub-btn" target="_blank">CurseForge</a>
+            <div class="btn" onclick="toggleSection('mainModContainer')">Modlarım</div>
+            <div id="mainModContainer" class="sub-buttons">
+                
+                <div class="platform-btn" onclick="toggleSection('modrinthList')">Modrinth</div>
+                <div id="modrinthList" class="mod-list">
+                    <a href="#" class="mod-item">Mod 1 (Modrinth)</a>
+                    <a href="#" class="mod-item">Mod 2 (Modrinth)</a>
+                </div>
+
+                <div class="platform-btn" onclick="toggleSection('curseforgeList')">CurseForge</div>
+                <div id="curseforgeList" class="mod-list">
+                    <a href="#" class="mod-item">Mod 1 (CurseForge)</a>
+                    <a href="#" class="mod-item">Mod 2 (CurseForge)</a>
+                </div>
+
             </div>
         </div>
         
         <div class="btn-wrapper">
             <a href="#" class="btn">Discord</a>
         </div>
-        <div class="btn-wrapper">
-            <a href="#" class="btn">YouTube</a>
-        </div>
     </div>
 
     <script>
-        function toggleLinks() {
-            const subLinks = document.getElementById('subLinks');
-            subLinks.classList.toggle('open');
+        function toggleSection(id) {
+            const el = document.getElementById(id);
+            if (el.classList.contains('sub-buttons')) {
+                el.classList.toggle('open');
+            } else {
+                el.classList.toggle('active');
+            }
         }
     </script>
 
