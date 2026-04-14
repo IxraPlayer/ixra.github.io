@@ -64,6 +64,7 @@
             background: linear-gradient(90deg, #001f3f, #0074d9, #1e3a8a);
             background-size: 300% 300%;
             animation: border-flow 6s linear infinite;
+            overflow: hidden;
         }
 
         .btn {
@@ -71,66 +72,62 @@
             border-radius: 13px;
             padding: 18px;
             text-align: center;
-            text-decoration: none;
             color: #ffffff;
             font-weight: 500;
-            display: block;
-            transition: all 0.3s ease;
-            position: relative;
-            z-index: 1;
             cursor: pointer;
             border: none;
             width: 100%;
             font-size: 16px;
+            display: block;
+            text-decoration: none;
+            box-sizing: border-box;
         }
 
         .sub-buttons {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.5s ease-out;
-            display: flex;
+            display: none;
+            background-color: #0d1117;
             flex-direction: column;
-            gap: 8px;
-            padding: 0 10px;
+            gap: 10px;
+            padding: 0 15px 15px 15px;
         }
 
         .sub-buttons.open {
-            max-height: 500px;
-            padding: 10px;
+            display: flex;
         }
 
         .platform-btn {
-            background-color: rgba(88, 166, 255, 0.15);
-            border: 1px solid rgba(88, 166, 255, 0.4);
-            border-radius: 12px;
-            padding: 14px;
+            background-color: rgba(88, 166, 255, 0.1);
+            border: 1px solid rgba(88, 166, 255, 0.3);
+            border-radius: 10px;
+            padding: 12px;
             color: #58a6ff;
-            font-weight: bold;
+            font-weight: 600;
             cursor: pointer;
             text-align: center;
+            transition: 0.3s;
+        }
+
+        .platform-btn:hover {
+            background-color: rgba(88, 166, 255, 0.2);
         }
 
         .mod-list {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.4s ease;
-            display: flex;
+            display: none;
             flex-direction: column;
             gap: 5px;
             margin-top: 5px;
-            padding-left: 15px;
-            border-left: 2px solid rgba(88, 166, 255, 0.2);
+            padding: 5px 0 5px 10px;
+            border-left: 2px solid #1e3a8a;
         }
 
         .mod-list.active {
-            max-height: 300px;
-            margin-bottom: 10px;
+            display: flex;
         }
 
         .mod-item {
-            background-color: rgba(255, 255, 255, 0.05);
-            padding: 10px;
-            border-radius: 8px;
+            background-color: rgba(255, 255, 255, 0.03);
+            padding: 8px;
+            border-radius: 6px;
             color: #c9d1d9;
             text-decoration: none;
             font-size: 14px;
@@ -138,8 +135,8 @@
         }
 
         .mod-item:hover {
-            background-color: rgba(88, 166, 255, 0.1);
-            color: #ffffff;
+            color: #58a6ff;
+            background-color: rgba(255, 255, 255, 0.07);
         }
     </style>
 </head>
@@ -173,12 +170,16 @@
         <div class="btn-wrapper">
             <a href="#" class="btn">Discord</a>
         </div>
+
+        <div class="btn-wrapper">
+            <a href="#" class="btn">YouTube</a>
+        </div>
     </div>
 
     <script>
         function toggleSection(id) {
             const el = document.getElementById(id);
-            if (el.classList.contains('sub-buttons')) {
+            if (id === 'mainModContainer') {
                 el.classList.toggle('open');
             } else {
                 el.classList.toggle('active');
